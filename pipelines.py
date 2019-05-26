@@ -10,5 +10,5 @@ class MongoPipeline(object):
         try:
             self.db.videos.update_one({'_id': item['_id']}, {'$set': item}, upsert=True)
         except Exception as e:
-            self.logger.error(e)
+            spider.logger.error(e)
         return item
