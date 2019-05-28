@@ -12,4 +12,4 @@ scrapy runspider spider.py
 ```
 
 ### Huh?
-![Videos](https://i.imgur.com/IGxfouc.jpg)
+![Videos](https://i.imgur.com/ZSsjRJq.jpg)

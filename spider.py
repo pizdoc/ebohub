@@ -27,8 +27,11 @@ class Spider(scrapy.Spider):
         data = json.loads(response.xpath('//script').re_first(r'flashvars_\d+ = (.+);'))
         yield {
             '_id': response.url.split('=')[-1],
-            'title': data.get('video_title'),
-            'image': data.get('image_url'),
+            'title': data['video_title'],
+            'image': data['image_url'],
             'video': next(x['videoUrl'] for x in data['mediaDefinitions'] if x['quality'] == '480'),
-            'duration': int(data.get('video_duration'))
+            'duration': int(data['video_duration']),
+            'views': int(response.xpath('//span[@class="count"]/text()').extract_first().replace(',', '')),
+            'tags': response.xpath('//div[@class="tagsWrapper"]/a/text()').extract(),
+            'categories': response.xpath('//div[@class="categoriesWrapper"]/a/text()').extract()
         }
